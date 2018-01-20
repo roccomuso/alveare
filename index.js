@@ -1,4 +1,5 @@
 const colors = require('colors')
+const moment = require('moment')
 const {logo, welcomeText} = require('./other/text')
 const NetcatServer = require('netcat/server')
 const readline = require('readline')
@@ -15,14 +16,28 @@ console.log(logo.yellow, `\nAlveare started on port ${QUEENBEE_PORT}, waiting fo
 // BEE HIVE
 let hive = new NetcatServer()
 hive.k().port(BEES_PORT).listen().on('connection', (bee) => {
-  console.log(`New bee ${bee.id} connected`.yellow)
+  let now = moment().format('MMM Do YYYY, HH:mm:ss')
+  console.log(`[${now}] New bee ${bee.remoteAddress}:${bee.remotePort} (${bee.id})`.yellow, 'connected'.green)
+}).on('clientClose', (bee) => {
+  let now = moment().format('MMM Do YYYY, HH:mm:ss')
+  console.log(`[${now}] New bee ${bee.remoteAddress}:${bee.remotePort} (${bee.id})`.yellow, 'died'.red)
 })
-
-// hive.getClients()
 
 // QUEEN BEE
 let nc = new NetcatServer()
 nc.k().address(HOST).port(QUEENBEE_PORT).listen().on('connection', (queenBee) => { // admin socket
-  let cli = new HiveInterface({welcomeMsg, socket: queenBee})
+  let now = moment().format('MMM Do YYYY, HH:mm:ss')
+  console.log(`[${now}] A queen bee just entered the Hive`.yellow)
+  let cli = new HiveInterface({welcomeMsg, hive, socket: queenBee})
   cli.start()
 })
+
+/*
+
+// TODO: interactive questions/prompt on the Hive
+
+const inquirer = require('inquirer')
+const prompt = inquirer.createPromptModule({ input: process.stdin, output: process.stderr }) // TODO: input/output sul socket queenBee
+prompt( question array/object here )
+
+*/
