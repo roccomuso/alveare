@@ -1,0 +1,31 @@
+{
+  "name": "alveare",
+  "version": "1.0.0",
+  "description": "multi-client multi-threaded reverse shell handler written in node",
+  "main": "tty.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roccomuso/alveare"
+  },
+  "keywords": [
+    "tty",
+    "reverse",
+    "shell",
+    "socket",
+    "multi-thread",
+    "handler",
+    "sockets",
+    "connections"
+  ],
+  "author": "Rocco Musolino (@roccomuso)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roccomuso/alveare/issues"
+  },
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}
