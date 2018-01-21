@@ -20,7 +20,7 @@ hive.k().port(BEES_PORT).listen().on('connection', (bee) => {
   console.log(`[${now}] New bee ${bee.remoteAddress}:${bee.remotePort} (${bee.id})`.yellow, 'connected'.green)
 }).on('clientClose', (bee) => {
   let now = moment().format('MMM Do YYYY, HH:mm:ss')
-  console.log(`[${now}] New bee ${bee.remoteAddress}:${bee.remotePort} (${bee.id})`.yellow, 'died'.red)
+  console.log(`[${now}] Bee ${bee.remoteAddress}:${bee.remotePort} (${bee.id})`.yellow, 'died'.red)
 })
 
 // QUEEN BEE
@@ -31,13 +31,3 @@ nc.k().address(HOST).port(QUEENBEE_PORT).listen().on('connection', (queenBee) =>
   let cli = new HiveInterface({welcomeMsg, hive, socket: queenBee})
   cli.start()
 })
-
-/*
-
-// TODO: interactive questions/prompt on the Hive
-
-const inquirer = require('inquirer')
-const prompt = inquirer.createPromptModule({ input: process.stdin, output: process.stderr }) // TODO: input/output sul socket queenBee
-prompt( question array/object here )
-
-*/
