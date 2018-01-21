@@ -13,10 +13,10 @@ Alveare (`hive` in italian) lets you listen for incoming reverse connection, lis
 ### How it works
 
 1. Start alveare: `alveare -p 2389 --password s3cr3t`
-2. Connect to it: `telnet <server ip> <port>`
-3. Wait for connections...
+2. Connect to it as a queen bee: `telnet <server ip> <port>`
+3. Wait for connections to the hive...
 
-You can spawn a [netcat reverse-shell](https://github.com/roccomuso/netcat#reverse-shell) and increase the number of incoming connections.
+You can spawn a [netcat reverse-shell](https://github.com/roccomuso/netcat#reverse-shell) and increase the number of incoming connections (bees).
 
 ### Commands
 
