@@ -10,7 +10,7 @@ const HOST = '127.0.0.1' // only localhost interface
 
 const welcomeMsg = `${logo}\n${welcomeText}`.yellow
 
-console.log(logo.yellow)
+console.log(logo.yellow, `\nAlveare started on port ${QUEENBEE_PORT}, waiting for bees on port ${BEES_PORT}`.cyan)
 
 // QUEEN BEE
 let nc = new NetcatServer()
