@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "multi-client multi-threaded reverse shell handler written in node",
   "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "alveare": "./cli.js"
+  },
   "scripts": {
     "test": "standard"
   },
@@ -26,9 +30,13 @@
     "url": "https://github.com/roccomuso/alveare/issues"
   },
   "dependencies": {
+    "args": "^3.0.8",
     "colors": "^1.1.2",
     "moment": "^2.20.1",
     "netcat": "^1.3.3"
+  },
+  "engines": {
+    "node": ">=6.*.*"
   },
   "devDependencies": {
     "standard": "^10.0.3"
