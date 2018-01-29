@@ -2,7 +2,6 @@ const colors = require('colors')
 const moment = require('moment')
 const {logo, welcomeText} = require('./other/text')
 const NetcatServer = require('netcat/server')
-const readline = require('readline')
 const HiveInterface = require('./lib/hive')
 
 const QUEENBEE_PORT = process.env.QUEENBEE_PORT || 8888
