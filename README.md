@@ -3,6 +3,7 @@
 [![NPM Version](https://img.shields.io/npm/v/alveare.svg)](https://www.npmjs.com/package/alveare)
 ![node](https://img.shields.io/node/v/alveare.svg)
 [![Dependency Status](https://david-dm.org/roccomuso/alveare.png)](https://david-dm.org/roccomuso/alveare)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > Multi-client, multi-threaded reverse shell handler written in Node.js :honey_pot:
 
