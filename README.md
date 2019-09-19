@@ -44,6 +44,7 @@ Options:
   -H, --help                Output usage information
   -h, --queen-host [value]  Queen bees host to bind the listening server to (defaults to "127.0.0.1")
   -p, --queen-port <n>      The port on which the hive will be listening for queen bees (defaults to 8869)
+  -s, --honey-script        Script commands which got send to new connected bee (defaults to "")
   -v, --version             Output the version number
 ```
 
