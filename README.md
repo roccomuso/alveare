@@ -62,16 +62,20 @@ Options:
 ### Optional systemd setup
 Automatic, less privileged start at boot for systemd based systems.
 
-- Configure your hive path and start up options at ./other/alveare.service (--bee-port, --queen-port...).
-    ```
-    ExecStart=/usr/local/src/alveare/cli.js --bee-port 2389
-    ```
-- ```shell
-    # be root copy systemd service file
+Configure your hive path and start up options at ./other/alveare.service (--bee-port, --queen-port...):
+```
+ExecStart=/usr/local/src/alveare/cli.js --bee-port 2389
+```
+then:
+```shell
+    # be root, copy systemd service file
     cp ./other/alveare.service /etc/systemd/system/alveare.service
-    
+
     # enable alveare start at system boot
     systemctl enable alveare
+    
+    # start alveare via systemd
+    systemctl start alveare
 ```
 
 ### Disclaimer
