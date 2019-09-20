@@ -7,7 +7,7 @@ args
   .option(['p', 'queen-port'], 'The port on which the hive will be listening for queen bees', 8869)
   .option(['H', 'bee-host'], 'Worker bees host to bind the listening server to', '0.0.0.0')
   .option(['P', 'bee-port'], 'The port on which the hive will be listening for worker bees', 2389)
-  .option(['s', 'honey-script'], 'Script commands which got send to new connected bee', '')
+  .option(['s', 'honey-script'], 'Path to script which commands will be send to new connected bee (defaults to "")', '')
 
 const flags = args.parse(process.argv)
 

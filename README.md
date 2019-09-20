@@ -44,7 +44,7 @@ Options:
   -H, --help                Output usage information
   -h, --queen-host [value]  Queen bees host to bind the listening server to (defaults to "127.0.0.1")
   -p, --queen-port <n>      The port on which the hive will be listening for queen bees (defaults to 8869)
-  -s, --honey-script        Script commands which got send to new connected bee (defaults to "")
+  -s, --honey-script        Path to script which commands will be send to new connected bee (defaults to "")
   -v, --version             Output the version number
 ```
 
@@ -62,7 +62,7 @@ Options:
 ### Optional systemd setup
 Automatic, less privileged start at boot for systemd based systems.
 
-Configure your hive path and start up options at ./other/alveare.service (--bee-port, --queen-port...):
+Configure your path to cli.js and start up options at ./other/alveare.service:
 ```
 ExecStart=/usr/local/src/alveare/cli.js --bee-port 2389
 ```
