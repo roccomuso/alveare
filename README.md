@@ -58,6 +58,25 @@ Options:
 - `.quit`: close your connection.
 - `.exit`: tear down the whole beehive.
 
+### Optional systemd setup
+Automatic, less privileged start at boot for systemd based systems.
+
+Configure your path to cli.js and start up options at ./other/alveare.service:
+```
+ExecStart=/usr/local/src/alveare/cli.js --bee-port 2389
+```
+Enable systemd service:
+```
+# be root, copy systemd service file
+cp ./other/alveare.service /etc/systemd/system/alveare.service
+
+# enable alveare start at system boot
+systemctl enable alveare
+    
+# start alveare via systemd
+systemctl start alveare
+```
+
 ### Disclaimer
 
 *This reverse shell should only be used in the lawful, remote administration of authorized systems. Accessing a computer network without authorization or permission is illegal*.

@@ -1,0 +1,14 @@
+[Unit]
+Description=alveare shell handler
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/src/alveare/cli.js --bee-port 2389
+Restart=always
+RestartSec=10
+User=nobody
+
+[Install]
+WantedBy=multi-user.target
+
+ 
