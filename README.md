@@ -42,6 +42,7 @@ Options:
   -H, --bee-host [value]    Worker bees host to bind the listening server to (defaults to "0.0.0.0")
   -P, --bee-port <n>        The port on which the hive will be listening for worker bees (defaults to 2389)
   -H, --help                Output usage information
+  -s, --honey-script        Path to script which will be transfered line by line to new connected bee (defaults to "")
   -h, --queen-host [value]  Queen bees host to bind the listening server to (defaults to "127.0.0.1")
   -p, --queen-port <n>      The port on which the hive will be listening for queen bees (defaults to 8869)
   -v, --version             Output the version number
