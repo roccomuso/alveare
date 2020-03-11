@@ -925,10 +925,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-netcat@^1.3.5:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/netcat/-/netcat-1.4.0.tgz#42d72787566a93eb164f1238f23c92e48233acea"
-  integrity sha512-2U3ubutoDf/VLHv6gf2pldS3rgZQZh2D7HPgyaBVW8+mo4ulwFdXI24Pe98yWfLqWcqjhiFG9gpBF15TWjS3ow==
+netcat@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/netcat/-/netcat-1.5.0.tgz#16fa19338d339ff2e23c6d1c8262050007fbce71"
+  integrity sha512-7M2aVlkoJDQYy2LPBl396pRx6iuWmQUTXPH11qbWj9lk7ORyZ3NWeb2r90j2NVOFPG6NGVtFtIrJPcw2pwgWHw==
   dependencies:
     async-each-series "^1.1.0"
     datagram-stream "^1.1.1"
