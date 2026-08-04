@@ -8,7 +8,7 @@ function timestamp () {
   return moment().format('MMM Do YYYY, HH:mm:ss')
 }
 
-export function App ({ logo, welcomeMsg, queenHost, queenPort, beeHost, beePort, hive, queen }) {
+export function App ({ welcomeMsg, queenHost, queenPort, beeHost, beePort, hive, queen }) {
   const [bees, setBees] = useState({})
   const [events, setEvents] = useState([])
 
@@ -46,7 +46,6 @@ export function App ({ logo, welcomeMsg, queenHost, queenPort, beeHost, beePort,
   const beeEntries = Object.entries(bees)
 
   return h(Box, { flexDirection: 'column' },
-    h(Text, { color: 'yellow' }, logo),
     h(Text, { color: 'yellow' }, welcomeMsg),
     h(Box, { flexDirection: 'column', marginBottom: 1 },
       h(Text, null, 'Queen bees: ', h(Text, { color: 'cyan' }, `${queenHost}:${queenPort}`)),

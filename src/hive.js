@@ -5,14 +5,14 @@ import { welcomeText } from '../other/text.js'
 import { getIndexedBeesList, getBeeByIndex } from './utilities.js'
 
 const _commands = {
-  '.help': 'display this message',
-  '.list': 'list connected bees',
-  '.bind <n>': 'bind to a bee and connect to his established socket',
-  '.unbind': 'detach the connection from the selected worker bee',
-  '.uptime': 'show hive uptime',
-  '.credit': 'display info on the project',
-  '.quit': 'close your connection',
-  '.exit': 'tear down the whole beehive'
+  '/help': 'display this message',
+  '/list': 'list connected bees',
+  '/bind <n>': 'bind to a bee and connect to his established socket',
+  '/unbind': 'detach the connection from the selected worker bee',
+  '/uptime': 'show hive uptime',
+  '/credit': 'display info on the project',
+  '/quit': 'close your connection',
+  '/exit': 'tear down the whole beehive'
 }
 
 function defaultCompleter (line) {
@@ -98,7 +98,7 @@ export class HiveInterface {
   }
 
   exec (command) {
-    if (command[0] === '.') {
+    if (command[0] === '/') {
       switch (command.slice(1).split(' ')[0]) {
         case 'help':
           this.response(this.getHelp())
@@ -113,7 +113,7 @@ export class HiveInterface {
           if (!index) return this.response(chalk.red('Please provide a Bee ID'))
           const targetSocket = getBeeByIndex(this.hive.getClients(), index)
           if (!targetSocket) return this.response(chalk.red(`Cannot find bee with Index ${index}`))
-          if (this.sendTo) return this.response(chalk.red('Please first .unbind the current connection'))
+          if (this.sendTo) return this.response(chalk.red('Please first /unbind the current connection'))
           this.response(chalk.yellow(`Binding to ${index} on ${targetSocket.remoteAddress}:${targetSocket.remotePort}`))
           // connecting sockets
           this.sendTo = targetSocket

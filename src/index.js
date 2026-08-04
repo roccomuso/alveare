@@ -36,7 +36,6 @@ export function start ({ BEE_HOST, BEE_PORT, QUEEN_HOST, QUEEN_PORT }) {
   })
 
   mountDashboard({
-    logo,
     welcomeMsg,
     queenHost: QUEEN_HOST,
     queenPort: QUEEN_PORT,

@@ -16,5 +16,5 @@ export const logo = `
 
 export const welcomeText = `
   Welcome to your hive queen bee.
-  Enter .help if you're lost. Enjoy!
+  Enter /help if you're lost. Enjoy!
 `
