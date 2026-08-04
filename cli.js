@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const args = require('args')
-const { start } = require('./lib/index')
+import args from 'args'
+import { start } from './src/index.js'
 
 args
   .option(['h', 'queen-host'], 'Queen bees host to bind the listening server to', '127.0.0.1')
