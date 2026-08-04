@@ -47,6 +47,8 @@ Options:
   -v, --version             Output the version number
 ```
 
+While running, `alveare` renders a live dashboard in its own terminal showing the queen/bee listeners and connected bees as they join or leave.
+
 ### Queen bee Commands
 
 - `.help`: display this message.
