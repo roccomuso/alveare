@@ -1,8 +1,8 @@
-const readline = require('readline')
-const colors = require('colors') // eslint-disable-line no-unused-vars
-const moment = require('moment')
-const { welcomeText } = require('../other/text')
-const { getIndexedBeesList, getBeeByIndex } = require('./utilities')
+import readline from 'readline'
+import chalk from 'chalk'
+import moment from 'moment'
+import { welcomeText } from '../other/text.js'
+import { getIndexedBeesList, getBeeByIndex } from './utilities.js'
 
 const _commands = {
   '.help': 'display this message',
@@ -25,7 +25,7 @@ function defaultCompleter (line) {
   return [hits && hits.length ? hits : completions, line]
 }
 
-class HiveInterface {
+export class HiveInterface {
   constructor ({ commands, welcomeMsg, completer, socket, hive, testing, marker } = {}) {
     this.commands = commands || _commands
     this.welcomeMsg = welcomeMsg || welcomeText
@@ -39,7 +39,7 @@ class HiveInterface {
       ? readline.createInterface({ input: process.stdin, output: process.stdout, completer: this.completer })
       : readline.createInterface({ input: this.socket, output: this.socket, completer: this.completer })
     this.marker = marker || '> '
-    this.rl.setPrompt(this.marker.grey)
+    this.rl.setPrompt(chalk.grey(this.marker))
     this.socket.on('close', () => {
       // queen bee closed
       this.removeSendToListeners()
@@ -52,11 +52,11 @@ class HiveInterface {
     for (const i in this.commands) {
       msg.push(`${i}\t\t${this.commands[i]}`)
     }
-    return msg.join('\n').grey
+    return chalk.grey(msg.join('\n'))
   }
 
   welcome () {
-    this.response(this.welcomeMsg.yellow)
+    this.response(chalk.yellow(this.welcomeMsg))
     this.rl.prompt()
   }
 
@@ -88,8 +88,8 @@ class HiveInterface {
     this._onClose = function () {
       if (!this.sendTo) return
       this.removeSendToListeners()
-      this.rl.setPrompt(this.marker.grey) // reset marker
-      this.socket.write(`[connection closed with ${this.sendTo.id}]\n`.red)
+      this.rl.setPrompt(chalk.grey(this.marker)) // reset marker
+      this.socket.write(chalk.red(`[connection closed with ${this.sendTo.id}]\n`))
       this.sendTo = null
       this.rl.prompt()
     }
@@ -99,61 +99,57 @@ class HiveInterface {
 
   exec (command) {
     if (command[0] === '.') {
-      const now = moment().format('MMM Do YYYY, HH:mm:ss')
       switch (command.slice(1).split(' ')[0]) {
         case 'help':
           this.response(this.getHelp())
           break
         case 'list': {
-          let bees = getIndexedBeesList(this.hive.getClients())
-          bees = bees.length ? bees.join('\n').green : 'No bees connected'.grey
-          this.response(bees)
+          const bees = getIndexedBeesList(this.hive.getClients())
+          this.response(bees.length ? chalk.green(bees.join('\n')) : chalk.grey('No bees connected'))
           break
         }
         case 'bind': {
           const index = command.slice(1).split(' ')[1]
-          if (!index) return this.response('Please provide a Bee ID'.red)
+          if (!index) return this.response(chalk.red('Please provide a Bee ID'))
           const targetSocket = getBeeByIndex(this.hive.getClients(), index)
-          if (!targetSocket) return this.response(`Cannot find bee with Index ${index}`.red)
-          if (this.sendTo) return this.response('Please first .unbind the current connection'.red)
-          this.response(`Binding to ${index} on ${targetSocket.remoteAddress}:${targetSocket.remotePort}`.yellow)
+          if (!targetSocket) return this.response(chalk.red(`Cannot find bee with Index ${index}`))
+          if (this.sendTo) return this.response(chalk.red('Please first .unbind the current connection'))
+          this.response(chalk.yellow(`Binding to ${index} on ${targetSocket.remoteAddress}:${targetSocket.remotePort}`))
           // connecting sockets
           this.sendTo = targetSocket
           this.sendTo.on('data', this.onData())
           this.sendTo.on('close', this.onClose())
-          console.log(`[${now}] Queen Bee bound to the bee: ${targetSocket.id}`.yellow)
-          const newMarker = `${targetSocket.id} > `.grey
+          const newMarker = chalk.grey(`${targetSocket.id} > `)
           this.rl.setPrompt(newMarker)
           break
         }
         case 'unbind':
           if (this.sendTo) {
             this.removeSendToListeners()
-            console.log(`[${now}] Queen Bee left bee: ${this.sendTo.id}`.yellow)
             this.sendTo = null
-            this.rl.setPrompt(this.marker.grey) // reset marker
+            this.rl.setPrompt(chalk.grey(this.marker)) // reset marker
           }
           break
         case 'uptime':
-          this.response(moment.duration(process.uptime(), 'seconds').humanize().green)
+          this.response(chalk.green(moment.duration(process.uptime(), 'seconds').humanize()))
           break
         case 'credit':
-          this.response('Rocco Musolino (@roccomuso) - github.com/roccomuso/alveare'.green)
+          this.response(chalk.green('Rocco Musolino (@roccomuso) - github.com/roccomuso/alveare'))
           break
         case 'quit':
         case 'q':
-          this.response('Bye!'.green)
+          this.response(chalk.green('Bye!'))
           if (!this.testing) this.socket.destroy() // NB. socket method
           break
         case 'exit':
-          this.response('Tearing down the beehive...!'.red)
+          this.response(chalk.red('Tearing down the beehive...!'))
           process.exit(0)
           break // eslint-disable-line no-unreachable
       }
     } else {
       // only print if they typed something and if not bound to a bee
       if (command !== '' && !this.sendTo) {
-        this.response(`"${command}" is not a valid command, sorry`.yellow)
+        this.response(chalk.yellow(`"${command}" is not a valid command, sorry`))
       } else if (this.sendTo) {
         this.sendTo.write(`${command}\n`) // send command to the worker
       }
@@ -164,16 +160,8 @@ class HiveInterface {
   start () {
     this.rl.on('line', (cmd) => {
       this.exec(cmd.trim())
-    }).on('close', () => {
-      // only gets triggered by ^C or ^D
-      const now = moment().format('MMM Do YYYY, HH:mm:ss')
-      console.log(`[${now}] A queen bee just quit`.red)
-      // this.response('goodbye!'.green)
-      // process.exit(0)
     })
 
     this.welcome()
   }
 }
-
-module.exports = HiveInterface
