@@ -1,4 +1,4 @@
-exports.logo = `
+export const logo = `
     ^^      .-=-=-=-.  ^^
 ^^        (\`-=-=-=-=-\`)         ^^
         (\`-=-=-=-=-=-=-\`)  ^^         ^^
@@ -14,7 +14,7 @@ exports.logo = `
            \`-=-=-=-=-\`
 `
 
-exports.welcomeText = `
+export const welcomeText = `
   Welcome to your hive queen bee.
   Enter .help if you're lost. Enjoy!
 `
