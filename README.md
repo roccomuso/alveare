@@ -19,7 +19,7 @@ Alveare (`hive` in italian) lets you listen for incoming reverse connection, lis
 Alveare is a **tcp server with 2 listening ports**. One used by the *queen bees* and the other by *worker bees*.
 
 1. Default usage, type: `alveare`
-2. Connect to it as a queen bee: `telnet localhost 8869` and type `.help`
+2. Connect to it as a queen bee: `telnet localhost 8869` and type `/help`
 3. Wait for worker bees to join the hive...
 
 You can spawn a [netcat reverse-shell](https://github.com/roccomuso/netcat#reverse-shell) and increase the number of incoming connections (bees).
@@ -51,14 +51,14 @@ While running, `alveare` renders a live dashboard in its own terminal showing th
 
 ### Queen bee Commands
 
-- `.help`: display this message.
-- `.list`: list connected bees.
-- `.bind <n>`: bind to a bee and connect to his established socket.
-- `.unbind`: detach the connection from the selected worker bee.
-- `.uptime`: show hive uptime.
-- `.credit`: display info on the project.
-- `.quit`: close your connection.
-- `.exit`: tear down the whole beehive.
+- `/help`: display this message.
+- `/list`: list connected bees.
+- `/bind <n>`: bind to a bee and connect to his established socket.
+- `/unbind`: detach the connection from the selected worker bee.
+- `/uptime`: show hive uptime.
+- `/credit`: display info on the project.
+- `/quit`: close your connection.
+- `/exit`: tear down the whole beehive.
 
 ### Disclaimer
 
